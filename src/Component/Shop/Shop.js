@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { addToDb, getStoreCart } from "../../utilities/fakedb";
 import Cart from "./Cart/Cart";
 import Products from "./Products/Products";
 import "./Shop.css";
@@ -13,9 +14,34 @@ const Shop = () => {
     );
   }, []);
 
+  //   Lode Local Store id
+  useEffect(() => {
+    const storedCart = getStoreCart();
+    const savedCart = [];
+    for (const id in storedCart) {
+      const data = products.find((product) => product.id === id);
+      if (data) {
+        const quantity = storedCart[id];
+        data.quantity = quantity;
+        savedCart.push(data);
+      }
+    }
+    setProductDetails(savedCart);
+  }, [products]);
+
   const clickHandle = (details) => {
-    const newData = [...productDetails, details];
+    let newData = [];
+    const exist = productDetails.find((item) => item.id === details.id);
+    if (!exist) {
+      details.quantity = 1;
+      newData = [...productDetails, details];
+    } else {
+      const rest = productDetails.filter((item) => item.id !== details.id);
+      exist.quantity = exist.quantity + 1;
+      newData = [...rest, exist];
+    }
     setProductDetails(newData);
+    addToDb(details.id);
   };
 
   return (

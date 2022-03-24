@@ -5,8 +5,12 @@ const Products = ({ product, clickHandle }) => {
   const { name, seller, price, img, ratings } = product;
   return (
     <div className="relative">
-      <div className="border p-1 rounded-md ">
-        <img src={img} alt="" />
+      <div className="border p-1 rounded-md relative ">
+        <img
+          src={img}
+          alt={name}
+          className=" transition-all hover:rounded-lg hover:z-50 "
+        />
         <h4 className="text-left">{name}</h4>
         <p className="text-left font-semibold">Price: ${price}</p>
         <p className="text-left">Manufacturer: {seller}</p>
