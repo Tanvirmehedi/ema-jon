@@ -1,0 +1,11 @@
+ul li {
+  padding-right: 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.5s linear;
+}
+
+ul li:hover {
+  color: orange;
+}
