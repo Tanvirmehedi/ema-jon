@@ -4,12 +4,12 @@ import "./Products.css";
 const Products = ({ product, clickHandle }) => {
   const { name, seller, price, img, ratings } = product;
   return (
-    <div className="relative">
-      <div className="border p-1 rounded-md relative ">
+    <div className="mx-20 my-10 sm:mx-0 sm:my-0 relative">
+      <div className=" border p-1 rounded-md relative ">
         <img
           src={img}
           alt={name}
-          className=" transition-all hover:rounded-lg hover:z-50 "
+          className=" w-full transition-all hover:rounded-lg hover:z-50 "
         />
         <h4 className="text-left">{name}</h4>
         <p className="text-left font-semibold">Price: ${price}</p>
